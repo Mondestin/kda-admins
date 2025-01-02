@@ -52,3 +52,5 @@
 {"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-02 23:53:24"}
 {"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 23:56:57"}
 {"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-02 23:57:02"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-03 00:10:51"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-03 00:11:52"}
