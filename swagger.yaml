@@ -1,0 +1,756 @@
+openapi: 3.0.0
+info:
+  title: Kukwenda API
+  version: 1.3.0
+  description: Comprehensive API for managing backend operations (Admins) and frontend user operations (Clients) on the Kukwenda platform.
+
+servers:
+  - url: http://localhost:3000
+    description: Local server
+
+paths:
+  # Admin Endpoints
+  /admins/users:
+    get:
+      summary: Retrieve all users
+      tags:
+        - Admins
+      responses:
+        '200':
+          description: A list of all users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create a new user
+      tags:
+        - Admins
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created successfully
+    put:
+      summary: Update an existing user
+      tags:
+        - Admins
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated successfully
+    delete:
+      summary: Delete a user
+      tags:
+        - Admins
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User deleted successfully
+
+  /admins/buses:
+    get:
+      summary: Retrieve all buses
+      tags:
+        - Admins
+      responses:
+        '200':
+          description: A list of all buses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bus'
+    post:
+      summary: Create a new bus
+      tags:
+        - Admins
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bus'
+      responses:
+        '201':
+          description: Bus created successfully
+    put:
+      summary: Update an existing bus
+      tags:
+        - Admins
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bus'
+      responses:
+        '200':
+          description: Bus updated successfully
+    delete:
+      summary: Delete a bus
+      tags:
+        - Admins
+      parameters:
+        - name: busId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Bus deleted successfully
+
+  /admins/routes:
+    get:
+      summary: Retrieve all routes
+      tags:
+        - Admins
+      responses:
+        '200':
+          description: A list of all routes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Route'
+    post:
+      summary: Create a new route
+      tags:
+        - Admins
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Route'
+      responses:
+        '201':
+          description: Route created successfully
+    put:
+      summary: Update an existing route
+      tags:
+        - Admins
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Route'
+      responses:
+        '200':
+          description: Route updated successfully
+    delete:
+      summary: Delete a route
+      tags:
+        - Admins
+      parameters:
+        - name: routeId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Route deleted successfully
+  /admins/bookings:
+    get:
+      summary: Retrieve all bookings
+      tags:
+        - Admins
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [pending, confirmed, cancelled, completed]
+            example: pending
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: date_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: date_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: A list of bookings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+    post:
+      summary: Create a booking (for walk-ins or manual bookings)
+      tags:
+        - Admins
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Booking'
+      responses:
+        '201':
+          description: Booking created successfully
+
+  /admins/bookings/{bookingId}:
+    get:
+      summary: Retrieve details of a specific booking
+      tags:
+        - Admins
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Booking details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+
+    put:
+      summary: Update or validate a booking
+      tags:
+        - Admins
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [confirmed, cancelled, completed]
+                  example: confirmed
+                payment_status:
+                  type: string
+                  enum: [paid, unpaid]
+                  example: paid
+      responses:
+        '200':
+          description: Booking updated successfully
+
+    delete:
+      summary: Cancel a booking
+      tags:
+        - Admins
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Booking cancelled successfully
+
+  /admins/bookings/{bookingId}/accept-cash:
+    put:
+      summary: Accept cash payment for a booking
+      tags:
+        - Admins
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Cash payment accepted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bookingId:
+                    type: integer
+                  payment_status:
+                    type: string
+                    example: paid
+  /admins/bookings/{bookingId}/pay:
+    post:
+      summary: Process payment for a booking
+      tags:
+        - Payments
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payment_method:
+                  type: string
+                  enum: [paypal, mobile_money, stripe_cash]
+                  example: paypal
+                payment_details:
+                  type: object
+                  description: Details required for the payment method
+                  properties:
+                    paypal_id:
+                      type: string
+                      example: "PAYPAL-12345"
+                    mobile_money_ref:
+                      type: string
+                      example: "MM-TRANSACTION-12345"
+                    stripe_cash_token:
+                      type: string
+                      example: "STRIPE-TOKEN-12345"
+      responses:
+        '200':
+          description: Payment processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bookingId:
+                    type: integer
+                  payment_status:
+                    type: string
+                    enum: [paid, failed]
+                    example: paid
+                  transaction_id:
+                    type: string
+                    example: "TRANSACTION-12345"
+
+  /admins/bookings/{bookingId}/refund:
+    post:
+      summary: Initiate a refund for a booking
+      tags:
+        - Payments
+      parameters:
+        - name: bookingId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refund_amount:
+                  type: number
+                  format: float
+                  description: Amount to be refunded
+                  example: 50.0
+                reason:
+                  type: string
+                  description: Reason for the refund
+                  example: "User cancelled the booking"
+      responses:
+        '200':
+          description: Refund processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bookingId:
+                    type: integer
+                  refund_status:
+                    type: string
+                    enum: [success, failed]
+                    example: success
+                  refund_amount:
+                    type: number
+                    format: float
+                    example: 50.0
+                  transaction_id:
+                    type: string
+                    example: "REFUND-TRANSACTION-12345"
+
+  /payments/{transactionId}:
+    get:
+      summary: Retrieve payment details
+      tags:
+        - Payments
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Payment details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transaction_id:
+                    type: string
+                    example: "TRANSACTION-12345"
+                  bookingId:
+                    type: integer
+                  payment_method:
+                    type: string
+                    enum: [paypal, mobile_money, stripe_cash]
+                  payment_status:
+                    type: string
+                    enum: [paid, failed, refunded]
+                  amount:
+                    type: number
+                    format: float
+                    example: 100.0
+                  created_at:
+                    type: string
+                    format: date-time
+                    
+  /admins/income/total:
+    get:
+      summary: View total income from the fleet
+      tags:
+        - Admins
+      parameters:
+        - name: busId
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: routeId
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: date_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: date_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Total income data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_income:
+                    type: number
+                    example: 10000.50
+                  currency:
+                    type: string
+                    example: USD
+
+  /admins/income/report:
+    get:
+      summary: Generate income report
+      tags:
+        - Admins
+      parameters:
+        - name: format
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [csv, json]
+        - name: busId
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: routeId
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: date_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: date_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Income report generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  report_url:
+                    type: string
+                    example: "https://kukwenda.com/reports/income_report_2025-01-02.csv"
+
+  # Client Endpoints
+  /clients/search/buses:
+    get:
+      summary: Search for available buses
+      tags:
+        - Clients
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: List of available buses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bus'
+
+  /clients/bookings:
+    post:
+      summary: Create a booking
+      tags:
+        - Clients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Booking'
+      responses:
+        '201':
+          description: Booking confirmed
+    get:
+      summary: Retrieve user bookings
+      tags:
+        - Clients
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of user bookings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+
+  /clients/bookings/cancel:
+    put:
+      summary: Cancel a booking and request a refund
+      tags:
+        - Clients
+      parameters:
+        - name: bookingId
+          in: query
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Booking cancelled and refund requested
+
+  /clients/promotions:
+    get:
+      summary: Fetch active promotions
+      tags:
+        - Clients
+      responses:
+        '200':
+          description: List of active promotions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Promotion'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: johndoe@example.com
+        role:
+          type: string
+          enum: [user, admin, super-admin]
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    Bus:
+      type: object
+      properties:
+        id:
+          type: integer
+        bus_company_id:
+          type: integer
+        name:
+          type: string
+        capacity:
+          type: integer
+        wifi:
+          type: boolean
+        toilet:
+          type: boolean
+        food:
+          type: boolean
+        air_conditioning:
+          type: boolean
+        charging_ports:
+          type: boolean
+        description:
+          type: string
+
+    Route:
+      type: object
+      properties:
+        id:
+          type: integer
+        origin:
+          type: string
+        destination:
+          type: string
+        distance_km:
+          type: number
+        estimated_time:
+          type: string
+        policies:
+          type: string
+
+    Booking:
+      type: object
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: integer
+        ticket_id:
+          type: integer
+        booking_date:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [pending, confirmed, cancelled]
+        payment_status:
+          type: string
+          enum: [paid, unpaid]
+    Promotion:
+      type: object
+      properties:
+        id:
+          type: integer
+        route_id:
+          type: integer
+        discount_percentage:
+          type: number
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        description:
+          type: string
+    Payment:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+        booking_id:
+          type: integer
+        payment_method:
+          type: string
+          enum: [paypal, mobile_money, stripe_cash]
+        payment_status:
+          type: string
+          enum: [paid, failed, refunded]
+        amount:
+          type: number
+          format: float
+        created_at:
+          type: string
+          format: date-time

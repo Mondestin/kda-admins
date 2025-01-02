@@ -1,0 +1,54 @@
+{"level":"info","message":"Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 21:57:20"}
+{"level":"info","message":"Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 21:57:39"}
+{"level":"info","message":"Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:01:28"}
+{"level":"info","message":"Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:01:40"}
+{"level":"info","message":"Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:01:47"}
+{"level":"info","message":"Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:03:16"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:03:39"}
+{"level":"info","message":"GET /health","service":"kukwenda-api","timestamp":"2025-01-02 22:05:39"}
+{"level":"info","message":"GET /health","service":"kukwenda-api","timestamp":"2025-01-02 22:05:55"}
+{"level":"info","message":"GET /info","service":"kukwenda-api","timestamp":"2025-01-02 22:06:16"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:06:46"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:07:14"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:10:28"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:15:34"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:15:57"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:17:17"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:18:04"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:18:14"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:18:30"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:20:39"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:22:24"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:22:41"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:23:17"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:23:56"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:24:54"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:25:12"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:33:13"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:34:19"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:34:55"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:35:14"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:35:27"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:35:57"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:43:29"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:47:52"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:47:58"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 22:54:34"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 23:04:28"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 23:10:43"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 23:15:30"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 23:16:04"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 23:28:27"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 23:32:35"}
+{"level":"info","message":"GET /admins/users","service":"kukwenda-api","timestamp":"2025-01-02 23:41:31"}
+{"level":"info","message":"GET /admins/users","service":"kukwenda-api","timestamp":"2025-01-02 23:42:04"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-02 23:45:38"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-02 23:49:51"}
+{"level":"error","message":"Error fetching routes: Unknown column 'createdAt' in 'field list'","name":"SequelizeDatabaseError","original":{"code":"ER_BAD_FIELD_ERROR","errno":1054,"sql":"SELECT `id`, `origin`, `destination`, `distance_km`, `estimated_time`, `policies`, `createdAt`, `updatedAt` FROM `Routes` AS `Route`;","sqlMessage":"Unknown column 'createdAt' in 'field list'","sqlState":"42S22"},"parameters":{},"parent":{"code":"ER_BAD_FIELD_ERROR","errno":1054,"sql":"SELECT `id`, `origin`, `destination`, `distance_km`, `estimated_time`, `policies`, `createdAt`, `updatedAt` FROM `Routes` AS `Route`;","sqlMessage":"Unknown column 'createdAt' in 'field list'","sqlState":"42S22"},"service":"kukwenda-api","sql":"SELECT `id`, `origin`, `destination`, `distance_km`, `estimated_time`, `policies`, `createdAt`, `updatedAt` FROM `Routes` AS `Route`;","stack":"Error\n    at Query.run (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)\n    at /Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/sequelize.js:315:28\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async MySQLQueryInterface.select (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/dialects/abstract/query-interface.js:407:12)\n    at async Route.findAll (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/model.js:1140:21)\n    at async exports.getRoutes (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/src/controllers/admin/routesController.js:9:20)","timestamp":"2025-01-02 23:49:51"}
+{"level":"info","message":"GET /admins/bookings?status=pending","service":"kukwenda-api","timestamp":"2025-01-02 23:50:43"}
+{"level":"info","message":"GET /admins/bookings","service":"kukwenda-api","timestamp":"2025-01-02 23:51:25"}
+{"level":"info","message":"GET /info","service":"kukwenda-api","timestamp":"2025-01-02 23:53:07"}
+{"level":"info","message":"GET /admins/users","service":"kukwenda-api","timestamp":"2025-01-02 23:53:17"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-02 23:53:24"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-02 23:56:57"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-02 23:57:02"}

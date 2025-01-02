@@ -1,0 +1,43 @@
+require('dotenv').config(); // Load environment variables
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const helmet = require('helmet');
+const logger = require('./utils/logger'); // Custom logger
+const errorHandler = require('./middlewares/errorHandler'); // Centralized error handling
+
+// Route imports
+const adminRoutes = require('./routes/adminRoutes');
+const clientRoutes = require('./routes/clientRoutes');
+const commonRoutes = require('./routes/commonRoutes');
+
+// Initialize Express app
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware setup
+app.use(helmet()); // Secure HTTP headers
+app.use(cors()); // Enable Cross-Origin Resource Sharing
+app.use(bodyParser.json()); // Parse incoming JSON requests
+app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
+
+// Log every request
+app.use((req, res, next) => {
+  logger.info(`${req.method} ${req.url}`);
+  next();
+});
+
+// Routes setup
+app.use('/admins', adminRoutes); // Admin-specific routes
+app.use('/clients', clientRoutes); // Client-specific routes
+app.use('/', commonRoutes); // Shared/common routes
+
+// Centralized error handler
+app.use(errorHandler);
+
+// Start the server
+app.listen(PORT, () => {
+  logger.info(`App Server running on http://localhost:${PORT}`);
+});
+
+module.exports = app;
