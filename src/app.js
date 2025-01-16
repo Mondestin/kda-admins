@@ -1,4 +1,4 @@
-require('dotenv').config(); // Load environment variables
+require('dotenv').config(); 
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -8,7 +8,6 @@ const errorHandler = require('./middlewares/errorHandler'); // Centralized error
 
 // Route imports
 const adminRoutes = require('./routes/adminRoutes');
-const clientRoutes = require('./routes/clientRoutes');
 const commonRoutes = require('./routes/commonRoutes');
 
 // Initialize Express app
@@ -29,15 +28,14 @@ app.use((req, res, next) => {
 
 // Routes setup
 app.use('/admins', adminRoutes); // Admin-specific routes
-app.use('/clients', clientRoutes); // Client-specific routes
-app.use('/', commonRoutes); // Shared/common routes
+app.use('/api/', commonRoutes); // Shared/common routes
 
 // Centralized error handler
 app.use(errorHandler);
 
 // Start the server
 app.listen(PORT, () => {
-  logger.info(`App Server running on http://localhost:${PORT}`);
+  logger.info(`KDA ADMINS Server running on http://localhost:${PORT}`);
 });
 
 module.exports = app;
