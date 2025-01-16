@@ -3,6 +3,9 @@ const bookingsController = require('../controllers/admin/bookingsController');
 const busesController = require('../controllers/admin/busesController');
 const routesController = require('../controllers/admin/routesController');
 const paymentsController = require('../controllers/admin/paymentsController');
+const authController = require('../controllers/admin/authController');
+const userController = require('../controllers/admin/userController');
+
 
 const router = express.Router();
 
@@ -32,5 +35,11 @@ router.delete('/routes/:routeId', routesController.deleteRoute);
 // Admin payments
 router.post('/bookings/:bookingId/pay', paymentsController.processPayment);
 router.post('/bookings/:bookingId/refund', paymentsController.initiateRefund);
+
+// User Authentication Routes
+router.post('/register', authController.register); 
+router.post('/login', authController.login); 
+router.get('/user/me', userController.me);
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const Payment = require('../../models/Payment');
 
+// Process a payment for a booking
 exports.processPayment = async (req, res) => {
   try {
     const newPayment = await Payment.create(req.body);
@@ -9,6 +10,7 @@ exports.processPayment = async (req, res) => {
   }
 };
 
+// Initiate a refund for a payment
 exports.initiateRefund = async (req, res) => {
   const { payment_id, refund_amount, reason } = req.body;
   try {

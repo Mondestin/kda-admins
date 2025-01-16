@@ -13,6 +13,7 @@ exports.getBuses = async (req, res) => {
 
 // Create a new bus
 exports.createBus = async (req, res) => {
+  console.log(req.body);
   try {
     const newBus = await Bus.create(req.body);
     res.status(201).json({ success: true, data: newBus });
