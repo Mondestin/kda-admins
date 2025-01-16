@@ -18,6 +18,8 @@ exports.getRoutes = async (req, res) => {
 // Get a single route by ID
 exports.getRouteById = async (req, res) => {
   const { routeId } = req.params;
+   console.log("routeId ",routeId);
+
   try {
     const route = await Route.findByPk(routeId);
 
