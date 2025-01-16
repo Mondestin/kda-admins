@@ -54,3 +54,94 @@
 {"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-02 23:57:02"}
 {"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-03 00:10:51"}
 {"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-03 00:11:52"}
+{"level":"info","message":"GET /admins/users","service":"kukwenda-api","timestamp":"2025-01-03 00:18:07"}
+{"level":"info","message":"GET /admins/bookings?status=pending","service":"kukwenda-api","timestamp":"2025-01-03 00:18:17"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-03 00:18:32"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-03 00:18:46"}
+{"level":"info","message":"GET /admins/bookings?status=pending","service":"kukwenda-api","timestamp":"2025-01-03 00:25:15"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-03 00:25:23"}
+{"level":"error","message":"Error fetching routes: Unknown column 'createdAt' in 'field list'","name":"SequelizeDatabaseError","original":{"code":"ER_BAD_FIELD_ERROR","errno":1054,"sql":"SELECT `id`, `origin`, `destination`, `distance_km`, `estimated_time`, `policies`, `createdAt`, `updatedAt` FROM `Routes` AS `Route`;","sqlMessage":"Unknown column 'createdAt' in 'field list'","sqlState":"42S22"},"parameters":{},"parent":{"code":"ER_BAD_FIELD_ERROR","errno":1054,"sql":"SELECT `id`, `origin`, `destination`, `distance_km`, `estimated_time`, `policies`, `createdAt`, `updatedAt` FROM `Routes` AS `Route`;","sqlMessage":"Unknown column 'createdAt' in 'field list'","sqlState":"42S22"},"service":"kukwenda-api","sql":"SELECT `id`, `origin`, `destination`, `distance_km`, `estimated_time`, `policies`, `createdAt`, `updatedAt` FROM `Routes` AS `Route`;","stack":"Error\n    at Query.run (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/dialects/mysql/query.js:52:25)\n    at /Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/sequelize.js:315:28\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async MySQLQueryInterface.select (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/dialects/abstract/query-interface.js:407:12)\n    at async Route.findAll (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/model.js:1140:21)\n    at async exports.getRoutes (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/src/controllers/admin/routesController.js:9:20)","timestamp":"2025-01-03 00:25:23"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-03 00:31:03"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-03 00:31:03"}
+{"level":"info","message":"GET /clients/search/buses?from=bra&to=aaa&date=2025-01-01","service":"kukwenda-api","timestamp":"2025-01-03 00:35:08"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-03 00:40:05"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-03 00:40:05"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-03 22:49:59"}
+{"level":"info","message":"GET /admins/users","service":"kukwenda-api","timestamp":"2025-01-03 22:57:23"}
+{"level":"info","message":"POST /admins/buses","service":"kukwenda-api","timestamp":"2025-01-03 22:57:40"}
+{"level":"info","message":"App Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:13:07"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:15:43"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:19:56"}
+{"level":"info","message":"POST /admins/buses","service":"kukwenda-api","timestamp":"2025-01-16 22:21:00"}
+{"level":"info","message":"POST /admins/buses","service":"kukwenda-api","timestamp":"2025-01-16 22:21:01"}
+{"level":"info","message":"GET /info","service":"kukwenda-api","timestamp":"2025-01-16 22:22:09"}
+{"level":"info","message":"GET /info","service":"kukwenda-api","timestamp":"2025-01-16 22:22:18"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:22:38"}
+{"level":"info","message":"GET /info","service":"kukwenda-api","timestamp":"2025-01-16 22:22:43"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:22:49"}
+{"level":"info","message":"GET /info","service":"kukwenda-api","timestamp":"2025-01-16 22:22:52"}
+{"level":"info","message":"GET /info","service":"kukwenda-api","timestamp":"2025-01-16 22:22:53"}
+{"level":"info","message":"GET /info","service":"kukwenda-api","timestamp":"2025-01-16 22:22:53"}
+{"level":"info","message":"GET /api/info","service":"kukwenda-api","timestamp":"2025-01-16 22:22:59"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:23:16"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:24:41"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:24:59"}
+{"level":"info","message":"GET /api/health","service":"kukwenda-api","timestamp":"2025-01-16 22:25:37"}
+{"level":"info","message":"GET /api/health","service":"kukwenda-api","timestamp":"2025-01-16 22:25:50"}
+{"level":"info","message":"GET /api/health","service":"kukwenda-api","timestamp":"2025-01-16 22:25:52"}
+{"level":"info","message":"GET /api/health","service":"kukwenda-api","timestamp":"2025-01-16 22:25:52"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:33:06"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:33:14"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:33:23"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:33:34"}
+{"level":"info","message":"GET /admins/users","service":"kukwenda-api","timestamp":"2025-01-16 22:37:03"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 22:46:18"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-16 22:46:18"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 22:46:46"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-16 22:46:46"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 22:47:22"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-16 22:47:22"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 22:47:49"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-16 22:47:49"}
+{"level":"info","message":"POST /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 22:48:48"}
+{"level":"info","message":"Route created: 3","service":"kukwenda-api","timestamp":"2025-01-16 22:48:48"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 22:48:55"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-16 22:48:55"}
+{"level":"info","message":"POST /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 22:50:22"}
+{"level":"info","message":"GET /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 22:50:27"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 22:50:39"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-16 22:50:39"}
+{"level":"info","message":"GET /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 22:50:49"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:54:07"}
+{"level":"info","message":"GET /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 22:54:10"}
+{"level":"info","message":"GET /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 22:54:11"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:54:36"}
+{"level":"info","message":"GET /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 22:54:45"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:55:39"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 22:57:35"}
+{"level":"info","message":"GET /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 22:57:38"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:00:31"}
+{"level":"info","message":"GET /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 23:00:35"}
+{"level":"error","message":"Error fetching route with ID 1: Route.findById is not a function","service":"kukwenda-api","stack":"TypeError: Route.findById is not a function\n    at exports.getRouteById (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/src/controllers/admin/routesController.js:24:31)\n    at Layer.handle [as handle_request] (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/route.js:149:13)\n    at Route.dispatch (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/route.js:119:3)\n    at Layer.handle [as handle_request] (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/layer.js:95:5)\n    at /Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/index.js:284:15\n    at param (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/index.js:365:14)\n    at param (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/index.js:376:14)\n    at Function.process_params (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/index.js:421:3)\n    at next (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/index.js:280:10)","timestamp":"2025-01-16 23:00:35"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:03:33"}
+{"level":"info","message":"GET /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 23:03:42"}
+{"level":"info","message":"Fetched route with ID 1","service":"kukwenda-api","timestamp":"2025-01-16 23:03:42"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:06:10"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:07:33"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:07:39"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:09:23"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:09:39"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 23:09:55"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-16 23:09:55"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:11:33"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 23:11:37"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-16 23:11:37"}
+{"level":"info","message":"GET /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 23:11:41"}
+{"level":"info","message":"Fetched all routes","service":"kukwenda-api","timestamp":"2025-01-16 23:11:41"}
+{"level":"info","message":"POST /admins/routes","service":"kukwenda-api","timestamp":"2025-01-16 23:11:49"}
+{"level":"info","message":"Route created: 4","service":"kukwenda-api","timestamp":"2025-01-16 23:11:49"}
+{"level":"info","message":"PUT /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 23:12:02"}
+{"level":"error","message":"Error updating route with ID 1: Route.findById is not a function","service":"kukwenda-api","stack":"TypeError: Route.findById is not a function\n    at exports.updateRoute (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/src/controllers/admin/routesController.js:66:31)\n    at Layer.handle [as handle_request] (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/route.js:149:13)\n    at Route.dispatch (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/route.js:119:3)\n    at Layer.handle [as handle_request] (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/layer.js:95:5)\n    at /Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/index.js:284:15\n    at param (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/index.js:365:14)\n    at param (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/index.js:376:14)\n    at Function.process_params (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/index.js:421:3)\n    at next (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/express/lib/router/index.js:280:10)","timestamp":"2025-01-16 23:12:02"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:12:27"}
+{"level":"info","message":"PUT /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 23:12:35"}
+{"level":"info","message":"Route updated: ID 1","service":"kukwenda-api","timestamp":"2025-01-16 23:12:35"}

@@ -3,6 +3,9 @@ const bookingsController = require('../controllers/admin/bookingsController');
 const busesController = require('../controllers/admin/busesController');
 const routesController = require('../controllers/admin/routesController');
 const paymentsController = require('../controllers/admin/paymentsController');
+const authController = require('../controllers/admin/authController');
+const userController = require('../controllers/admin/userController');
+
 
 const router = express.Router();
 
@@ -17,17 +20,26 @@ router.put('/bookings/:bookingId/accept-cash', bookingsController.acceptCashPaym
 // Admin buses routes
 router.get('/buses', busesController.getBuses);
 router.post('/buses', busesController.createBus);
+router.get('/buses/:busId', busesController.getBusById);
 router.put('/buses/:busId', busesController.updateBus);
 router.delete('/buses/:busId', busesController.deleteBus);
 
 // Admin routes management
 router.get('/routes', routesController.getRoutes);
 router.post('/routes', routesController.createRoute);
+router.get('/routes/:routeId', routesController.getRouteById);
 router.put('/routes/:routeId', routesController.updateRoute);
 router.delete('/routes/:routeId', routesController.deleteRoute);
+
 
 // Admin payments
 router.post('/bookings/:bookingId/pay', paymentsController.processPayment);
 router.post('/bookings/:bookingId/refund', paymentsController.initiateRefund);
+
+// User Authentication Routes
+router.post('/register', authController.register); 
+router.post('/login', authController.login); 
+router.get('/user/me', userController.me);
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const Bus = require('../../models/Bus');
 
+// Get all buses
 exports.getBuses = async (req, res) => {
   try {
     const buses = await Bus.findAll();
@@ -10,7 +11,9 @@ exports.getBuses = async (req, res) => {
   }
 };
 
+// Create a new bus
 exports.createBus = async (req, res) => {
+  console.log(req.body);
   try {
     const newBus = await Bus.create(req.body);
     res.status(201).json({ success: true, data: newBus });
@@ -19,6 +22,19 @@ exports.createBus = async (req, res) => {
   }
 };
 
+// Get a single bus by ID
+exports.getBusById = async (req, res) => {
+  const { busId } = req.params;
+  try {
+    const bus = await Bus.findByPk(busId);
+    if (!bus) return res.status(404).json({ success: false, message: 'Bus not found' });
+    res.status(200).json({ success: true, data: bus });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error fetching buse' });
+  }
+};
+
+// Update an existing bus
 exports.updateBus = async (req, res) => {
   const { busId } = req.params;
   try {
@@ -31,6 +47,7 @@ exports.updateBus = async (req, res) => {
   }
 };
 
+// Delete an existing bus
 exports.deleteBus = async (req, res) => {
   const { busId } = req.params;
   try {

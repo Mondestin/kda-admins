@@ -13,11 +13,11 @@ exports.healthCheck = (req, res) => {
     res.status(200).json({
       success: true,
       data: {
-        application: 'Kukwenda API',
+        application: 'Kukwenda ADMINS API',
         version: '1.0.0',
-        description: 'API for managing bookings, payments, and refunds',
+        description: 'API for managing bookings, payments, and refunds by buses companies and carriers',
         author: 'Phoenone Group',
-        license: 'MIT',
+        license: 'Phoenone Group',
       },
     });
   };
