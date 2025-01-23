@@ -145,3 +145,26 @@
 {"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:12:27"}
 {"level":"info","message":"PUT /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 23:12:35"}
 {"level":"info","message":"Route updated: ID 1","service":"kukwenda-api","timestamp":"2025-01-16 23:12:35"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:33:09"}
+{"level":"info","message":"PUT /admins/buses/1","service":"kukwenda-api","timestamp":"2025-01-23 21:36:11"}
+{"level":"info","message":"PUT /admins/buses/1","service":"kukwenda-api","timestamp":"2025-01-23 21:36:24"}
+{"level":"info","message":"PUT /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:43:36"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:43:47"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:45:00"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:45:59"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:46:38"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:46:41"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:47:10"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:47:12"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:48:01"}
+{"level":"info","message":"GET /admins/busesd","service":"kukwenda-api","timestamp":"2025-01-23 21:48:18"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:48:25"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:49:13"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:49:17"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:49:37"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:52:37"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:57:41"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:58:37"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:58:56"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:58:59"}
+{"level":"info","message":"Fetched all buses","service":"kukwenda-api","timestamp":"2025-01-23 21:58:59"}

@@ -1,13 +1,17 @@
 const Bus = require('../../models/Bus');
+const response = require('../../utils/responseHelper');
+const logger = require('../../utils/logger');
 
 // Get all buses
 exports.getBuses = async (req, res) => {
   try {
     const buses = await Bus.findAll();
-    console.log(buses);
-    res.status(200).json({ success: true, data: buses });
+
+    logger.info('Fetched all buses');
+    response.success(res, buses);
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error fetching buses' });
+    console.log("Error fetching buses");
+    response.error(res, 'Error fetching buses');
   }
 };
 
@@ -16,7 +20,9 @@ exports.createBus = async (req, res) => {
   console.log(req.body);
   try {
     const newBus = await Bus.create(req.body);
+
     res.status(201).json({ success: true, data: newBus });
+
   } catch (error) {
     res.status(500).json({ success: false, message: 'Error creating bus' });
   }

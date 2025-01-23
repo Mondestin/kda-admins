@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../../models/User');
+const response = require('../../utils/responseHelper');
 
 require('dotenv').config();
 
@@ -12,10 +13,7 @@ exports.register = async (req, res) => {
     // Check if the email is already registered
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
-      return res.status(400).json({
-        success: false,
-        message: 'Email is already registered',
-      });
+      return response.error(res, 'Email already registered', 400);
     }
 
     // Hash the password
