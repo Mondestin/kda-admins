@@ -168,3 +168,4 @@
 {"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:58:56"}
 {"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:58:59"}
 {"level":"info","message":"Fetched all buses","service":"kukwenda-api","timestamp":"2025-01-23 21:58:59"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:00:45"}
