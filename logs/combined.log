@@ -145,3 +145,118 @@
 {"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-16 23:12:27"}
 {"level":"info","message":"PUT /admins/routes/1","service":"kukwenda-api","timestamp":"2025-01-16 23:12:35"}
 {"level":"info","message":"Route updated: ID 1","service":"kukwenda-api","timestamp":"2025-01-16 23:12:35"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:33:09"}
+{"level":"info","message":"PUT /admins/buses/1","service":"kukwenda-api","timestamp":"2025-01-23 21:36:11"}
+{"level":"info","message":"PUT /admins/buses/1","service":"kukwenda-api","timestamp":"2025-01-23 21:36:24"}
+{"level":"info","message":"PUT /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:43:36"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:43:47"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:45:00"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:45:59"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:46:38"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:46:41"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:47:10"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:47:12"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:48:01"}
+{"level":"info","message":"GET /admins/busesd","service":"kukwenda-api","timestamp":"2025-01-23 21:48:18"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:48:25"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:49:13"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:49:17"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:49:37"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:52:37"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:57:41"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:58:37"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 21:58:56"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 21:58:59"}
+{"level":"info","message":"Fetched all buses","service":"kukwenda-api","timestamp":"2025-01-23 21:58:59"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:00:45"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:20:13"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:20:29"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:20:33"}
+{"level":"error","message":"Fetched all buses","service":"kukwenda-api","timestamp":"2025-01-23 22:20:33"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:20:50"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:20:53"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:20:58"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:21:17"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:21:21"}
+{"level":"warn","message":"Fetched all buses","service":"kukwenda-api","timestamp":"2025-01-23 22:21:22"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:21:23"}
+{"level":"warn","message":"Fetched all buses","service":"kukwenda-api","timestamp":"2025-01-23 22:21:23"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:21:38"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:21:42"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:21:44"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:21:59"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:22:04"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:22:08"}
+{"level":"info","message":"GET /admins/buses","service":"kukwenda-api","timestamp":"2025-01-23 22:22:09"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:22:44"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:23:03"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:23:14"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:24:10"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 22:44:39"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 23:35:06"}
+{"level":"info","message":"KDA ADMINS Server running on http://localhost:3000","service":"kukwenda-api","timestamp":"2025-01-23 23:35:21"}
+{"level":"info","message":"Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-23 23:37:36"}
+{"level":"info","message":"Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-23 23:37:40"}
+{"level":"info","message":"Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-23 23:37:42"}
+{"level":"info","message":"Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-23 23:38:05"}
+{"level":"info","message":" KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-23 23:39:50"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-23 23:39:56"}
+{"level":"info","message":"POST /api/v1/auth/register","service":"kukwenda-api","timestamp":"2025-01-24 00:01:34"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:02:52"}
+{"level":"info","message":"GET /api/v1/kda//admins/buses","service":"kukwenda-api","timestamp":"2025-01-24 00:03:43"}
+{"level":"info","message":"GET /api/v1/kda/admins/buses","service":"kukwenda-api","timestamp":"2025-01-24 00:04:19"}
+{"level":"info","message":"Fetched all buses","service":"kukwenda-api","timestamp":"2025-01-24 00:04:20"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:04:43"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:05:03"}
+{"level":"info","message":"GET /api/v1/kda/admins/buses","service":"kukwenda-api","timestamp":"2025-01-24 00:05:11"}
+{"level":"info","message":"Fetched all buses","service":"kukwenda-api","timestamp":"2025-01-24 00:05:11"}
+{"level":"info","message":"POST /api/v1/kda/api/v1/auth/login","service":"kukwenda-api","timestamp":"2025-01-24 00:06:18"}
+{"level":"info","message":"POST /api/v1/kda/login","service":"kukwenda-api","timestamp":"2025-01-24 00:06:54"}
+{"level":"info","message":"POST /api/v1/kda/admins/login","service":"kukwenda-api","timestamp":"2025-01-24 00:07:35"}
+{"level":"info","message":"POST /api/v1/kda/admins/login","service":"kukwenda-api","timestamp":"2025-01-24 00:07:40"}
+{"level":"info","message":"POST /api/v1/kda/admins/register","service":"kukwenda-api","timestamp":"2025-01-24 00:08:03"}
+{"errors":[{"instance":{"createdAt":"2025-01-23T23:08:03.665Z","email":"testuser@example.com","id":null,"password":"$2b$10$V.lS49qs5N5HrDebPImcrO092H1spzD02fArxlPinHQ19OAgcwdgG","role":"user","updatedAt":"2025-01-23T23:08:03.665Z"},"message":"User.name cannot be null","origin":"CORE","path":"name","type":"notNull Violation","validatorArgs":[],"validatorKey":"is_null","validatorName":null,"value":null}],"level":"error","message":"Error registering user: notNull Violation: User.name cannot be null","name":"SequelizeValidationError","service":"kukwenda-api","stack":"SequelizeValidationError: notNull Violation: User.name cannot be null\n    at InstanceValidator._validate (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/instance-validator.js:50:13)\n    at async InstanceValidator._validateAndRunHooks (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/instance-validator.js:60:7)\n    at async InstanceValidator.validate (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/instance-validator.js:54:12)\n    at async model.save (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/model.js:2426:7)\n    at async User.create (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/node_modules/sequelize/lib/model.js:1362:12)\n    at async exports.register (/Users/gelvy-mondestin.myssie-bingha/Desktop/oe/kda-admins/src/controllers/admin/authController.js:24:21)","timestamp":"2025-01-24 00:08:03"}
+{"level":"info","message":"POST /api/v1/kda/admins/register","service":"kukwenda-api","timestamp":"2025-01-24 00:09:43"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:10:43"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:14:29"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:15:03"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:22:52"}
+{"level":"info","message":"POST /api/v1/kda/admins/register","service":"kukwenda-api","timestamp":"2025-01-24 00:25:24"}
+{"level":"info","message":"POST /api/v1/kda/admins/register","service":"kukwenda-api","timestamp":"2025-01-24 00:25:27"}
+{"level":"info","message":"POST /api/v1/kda/admins/register","service":"kukwenda-api","timestamp":"2025-01-24 00:25:45"}
+{"level":"info","message":"POST /api/v1/kda/admins/register","service":"kukwenda-api","timestamp":"2025-01-24 00:25:46"}
+{"level":"info","message":"POST /api/v1/kda/admins/register","service":"kukwenda-api","timestamp":"2025-01-24 00:25:52"}
+{"level":"info","message":"POST /api/v1/kda/admins/logout","service":"kukwenda-api","timestamp":"2025-01-24 00:26:56"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:39:39"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:40:06"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:40:22"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:40:32"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:41:19"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:41:42"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:42:47"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:43:03"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:45:16"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:45:28"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:47:17"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:47:31"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:48:12"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:48:22"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:54:56"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:55:38"}
+{"level":"info","message":"POST /api/v1/kda/admins/login","service":"kukwenda-api","timestamp":"2025-01-24 00:55:48"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:58:16"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:59:14"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:59:22"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 00:59:42"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 01:00:06"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 01:00:38"}
+{"level":"info","message":"POST /api/v1/kda/admins/login","service":"kukwenda-api","timestamp":"2025-01-24 01:00:52"}
+{"level":"info","message":"POST /api/v1/kda/admins/logout","service":"kukwenda-api","timestamp":"2025-01-24 01:01:25"}
+{"level":"info","message":"POST /api/v1/kda/admins/login","service":"kukwenda-api","timestamp":"2025-01-24 01:01:37"}
+{"level":"info","message":"POST /api/v1/kda/admins/logout","service":"kukwenda-api","timestamp":"2025-01-24 01:01:55"}
+{"level":"info","message":"POST /api/v1/kda/admins/logout","service":"kukwenda-api","timestamp":"2025-01-24 01:01:59"}
+{"level":"info","message":"POST /api/v1/kda/admins/logout","service":"kukwenda-api","timestamp":"2025-01-24 01:02:00"}
+{"level":"info","message":"POST /api/v1/kda/admins/logout","service":"kukwenda-api","timestamp":"2025-01-24 01:02:01"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 01:03:05"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 01:07:02"}
+{"level":"info","message":"KDA ADMINS Server running on port 3000","service":"kukwenda-api","timestamp":"2025-01-24 01:07:22"}

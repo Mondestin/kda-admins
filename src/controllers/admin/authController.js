@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../../models/User');
+const response = require('../../utils/responseHelper');
+const logger = require('../../utils/logger');
 
 require('dotenv').config();
 
-// User Registration
+// add swagger annotations here
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -12,10 +14,7 @@ exports.register = async (req, res) => {
     // Check if the email is already registered
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
-      return res.status(400).json({
-        success: false,
-        message: 'Email is already registered',
-      });
+      return response.error(res, 'Email already registered', 400);
     }
 
     // Hash the password
@@ -46,7 +45,7 @@ exports.register = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('Error registering user:', error);
+    logger.error('Error registering user:', error);
     res.status(500).json({
       success: false,
       message: 'An error occurred during registration',
@@ -54,7 +53,42 @@ exports.register = async (req, res) => {
   }
 };
 
-// User Login
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Log in a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: 
+ *              password:
+ *                type: string
+ *               example:
+ *            required:         
+ *             - email
+ *             - password
+ *    responses:    
+ *     200:         
+ *      description: User logged in successfully        
+ *     content:                     
+ *      application/json:       
+ *       schema:            
+ *       type: object           
+ *      properties:     
+ *       success:            
+ *        type: boolean       
+ *       message:             
+ *        type: string  
+ *       token: 
+ *        type: string
+ */
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -84,21 +118,39 @@ exports.login = async (req, res) => {
       { expiresIn: '1h' }
     );
 
+    // Send the token in a cookie
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+    });
+
+    // Respond with the token and user details
     res.status(200).json({
       success: true,
       message: 'Login successful',
-      token,
-      data: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-      },
+      token
     });
   } catch (error) {
-    console.error('Error logging in user:', error);
-    res.status(500).json({
-      success: false,
-      message: 'An error occurred during login',
-    });
+    logger.error('Error logging in user:', error);
+    response.error(res, 'An error occurred during login', 500);
   }
 };
+
+/**
+ * @swagger
+ * /logout:
+ *   post:
+ *     summary: Log out a user
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: User logged out successfully
+ */
+exports.logout = (req, res) => {
+    // Clear the 'token' cookie
+    res.clearCookie('token');
+
+    // Respond with a success message
+    response.success(res, 'User logged out successfully');
+  };
+  

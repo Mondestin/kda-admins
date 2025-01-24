@@ -16,10 +16,14 @@ const logger = createLogger({
         format.simple()
       ),
     }),
-    new transports.File({ filename: 'logs/error.log', level: 'error' }), // Error log file
     new transports.File({ filename: 'logs/combined.log' }), // Combined log file
   ],
 });
+
+// Add convenience methods for info, debug, error, and warn
+logger.info = (message, meta = {}) => logger.log('info', message, meta);
+logger.error = (message, meta = {}) => logger.log('error', message, meta);
+logger.warn = (message, meta = {}) => logger.log('warn', message, meta);
 
 // If not in production, log to the console with more detailed format
 if (process.env.NODE_ENV !== 'production') {
