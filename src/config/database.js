@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize');
-const config = require('./config'); // Import Sequelize CLI configuration
+const config = require('./config'); 
+const logger = require('../utils/logger');
 
 // Determine environment
 const environment = process.env.NODE_ENV || 'development';
@@ -27,9 +28,9 @@ const sequelize = new Sequelize(
 (async () => {
   try {
     await sequelize.authenticate();
-    console.log('Database connection established successfully.');
+    logger.info('Connection to the database has been established successfully.');
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    logger.error('Unable to connect to the database:', error);
     process.exit(1); // Exit with failure
   }
 })();
