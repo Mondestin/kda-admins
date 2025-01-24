@@ -16,7 +16,6 @@ const logger = createLogger({
         format.simple()
       ),
     }),
-    new transports.File({ filename: 'logs/error.log', level: 'error' }), // Error log file
     new transports.File({ filename: 'logs/combined.log' }), // Combined log file
   ],
 });

@@ -27,15 +27,15 @@ app.use((req, res, next) => {
 });
 
 // Routes setup
-app.use('/admins', adminRoutes); // Admin-specific routes
-app.use('/api/', commonRoutes); // Shared/common routes
+app.use('/api/v1/kda/admins', adminRoutes); // Admin-specific routes
+app.use('/api/v1/kda/admins', commonRoutes); // Shared/common routes
 
 // Centralized error handler
 app.use(errorHandler);
 
 // Start the server
 app.listen(PORT, () => {
-  logger.info(`KDA ADMINS Server running on http://localhost:${PORT}`);
+  logger.info(`KDA ADMINS Server running on port ${PORT}`);
 });
 
 module.exports = app;

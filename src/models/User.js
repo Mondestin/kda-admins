@@ -10,23 +10,23 @@ const User = sequelize.define('User', {
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false, // Name cannot be null
+    allowNull: false, 
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true, // Email must be unique
+    unique: true, 
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false, // Encrypted password
+    allowNull: false, 
   },
   role: {
-    type: DataTypes.ENUM('user', 'admin', 'super-admin'), // Role types
-    defaultValue: 'user', // Default role is 'user'
+    type: DataTypes.ENUM('transporter','admin', 'super-admin'),
+    defaultValue: 'admin', 
   },
 }, {
-  timestamps: true, // Adds createdAt and updatedAt fields
+  timestamps: true, 
 });
 
 module.exports = User;

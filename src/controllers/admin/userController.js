@@ -1,10 +1,21 @@
 const User = require('../../models/User');
+const logger = require('../../utils/logger');
+const response = require('../../utils/responseHelper');
 
+/**
+ * Get user profile
+ * @route GET /user/me
+ * @access Private (admin)
+ */
 exports.me = async (req, res) => {
   try {
     const user = await User.findByPk(req.user.id);
-    res.status(200).json({ success: true, data: user });
+    if (!user) return response.error(res, 'User not found', 404);
+    logger.info(`User retrieved: ${user.id}`);
+    response.success(res, 'User retrieved successfully', user);
+
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error fetching user' });
+    logger.error('Error fetching user:', error);
+    response.error(res, 'Error fetching user');
   }
 }

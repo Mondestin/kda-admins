@@ -40,6 +40,6 @@ router.post('/bookings/:bookingId/refund', paymentsController.initiateRefund);
 router.post('/register', authController.register); 
 router.post('/login', authController.login); 
 router.get('/user/me', userController.me);
-
+router.post('/logout', authController.logout);
 
 module.exports = router;
