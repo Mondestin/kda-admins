@@ -10,7 +10,7 @@ exports.getBuses = async (req, res) => {
     logger.info('Fetched all buses');
     response.success(res, buses);
   } catch (error) {
-    console.log("Error fetching buses");
+    logger.error('Error fetching buses:', error);
     response.error(res, 'Error fetching buses');
   }
 };

@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../../models/User');
 const response = require('../../utils/responseHelper');
+const logger = require('../../utils/logger');
 
 require('dotenv').config();
 
@@ -44,7 +45,7 @@ exports.register = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('Error registering user:', error);
+    logger.error('Error registering user:', error);
     res.status(500).json({
       success: false,
       message: 'An error occurred during registration',
