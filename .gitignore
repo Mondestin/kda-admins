@@ -1,3 +1,5 @@
 node_modules
 logs
 logs/combined.log
+/logs
+logs/combined.log

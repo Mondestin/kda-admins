@@ -1,5 +1,6 @@
 const Bus = require('../../models/Bus');
-const response = require('../../utils/responseHelper');
+const Amenity = require('../../models/Amenity');
+const { success, error } = require('../../utils/responseHelper');
 const logger = require('../../utils/logger');
 
 
@@ -22,13 +23,14 @@ const logger = require('../../utils/logger');
 
 exports.getBuses = async (req, res) => {
   try {
-    const buses = await Bus.findAll();
-
+    const buses = await Bus.findAll({
+      include: [{ model: Amenity }]
+    });
     logger.info('Fetched all buses');
-    response.success(res, buses);
-  } catch (error) {
-    logger.error('Error fetching buses:', error);
-    response.error(res, 'Error fetching buses');
+    success(res, 'Buses retrieved successfully', buses);
+  } catch (err) {
+    logger.error('Error fetching buses:', err);
+    error(res, 'Error fetching buses');
   }
 };
 
@@ -56,14 +58,27 @@ exports.getBuses = async (req, res) => {
  */
 
 exports.createBus = async (req, res) => {
-  console.log(req.body);
+  const { amenity_ids, ...busData } = req.body;
+  
   try {
-    const newBus = await Bus.create(req.body);
-
-    res.status(201).json({ success: true, data: newBus });
-
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Error creating bus' });
+    const newBus = await Bus.create(busData);
+    
+    if (amenity_ids && amenity_ids.length > 0) {
+      await newBus.setAmenities(amenity_ids);
+    }
+    
+    const busWithAmenities = await Bus.findByPk(newBus.id, {
+      include: [{ model: Amenity }]
+    });
+    
+    logger.info(`New bus created with ID: ${newBus.id}`);
+    success(res, 'Bus created successfully', busWithAmenities, 201);
+  } catch (err) {
+    logger.error('Error creating bus:', err);
+    if (err.name === 'SequelizeUniqueConstraintError') {
+      return error(res, 'Registration number already exists', 400);
+    }
+    error(res, 'Error creating bus');
   }
 };
 
@@ -94,11 +109,18 @@ exports.createBus = async (req, res) => {
 exports.getBusById = async (req, res) => {
   const { busId } = req.params;
   try {
-    const bus = await Bus.findByPk(busId);
-    if (!bus) return res.status(404).json({ success: false, message: 'Bus not found' });
-    res.status(200).json({ success: true, data: bus });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Error fetching buse' });
+    const bus = await Bus.findByPk(busId, {
+      include: [{ model: Amenity }]
+    });
+    if (!bus) {
+      logger.warn(`Bus not found: ID ${busId}`);
+      return error(res, 'Bus not found', 404);
+    }
+    logger.info(`Fetched bus with ID: ${busId}`);
+    success(res, 'Bus retrieved successfully', bus);
+  } catch (err) {
+    logger.error('Error fetching bus:', err);
+    error(res, 'Error fetching bus');
   }
 };
 
@@ -136,13 +158,33 @@ exports.getBusById = async (req, res) => {
 
 exports.updateBus = async (req, res) => {
   const { busId } = req.params;
+  const { amenity_ids, ...busData } = req.body;
+  
   try {
     const bus = await Bus.findByPk(busId);
-    if (!bus) return res.status(404).json({ success: false, message: 'Bus not found' });
-    await bus.update(req.body);
-    res.status(200).json({ success: true, data: bus });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Error updating bus' });
+    if (!bus) {
+      logger.warn(`Bus not found: ID ${busId}`);
+      return error(res, 'Bus not found', 404);
+    }
+
+    await bus.update(busData);
+    
+    if (amenity_ids) {
+      await bus.setAmenities(amenity_ids);
+    }
+    
+    const updatedBus = await Bus.findByPk(busId, {
+      include: [{ model: Amenity }]
+    });
+
+    logger.info(`Updated bus with ID: ${busId}`);
+    success(res, 'Bus updated successfully', updatedBus);
+  } catch (err) {
+    logger.error('Error updating bus:', err);
+    if (err.name === 'SequelizeUniqueConstraintError') {
+      return error(res, 'Registration number already exists', 400);
+    }
+    error(res, 'Error updating bus');
   }
 };
 
@@ -172,10 +214,16 @@ exports.deleteBus = async (req, res) => {
   const { busId } = req.params;
   try {
     const bus = await Bus.findByPk(busId);
-    if (!bus) return res.status(404).json({ success: false, message: 'Bus not found' });
+    if (!bus) {
+      logger.warn(`Bus not found: ID ${busId}`);
+      return error(res, 'Bus not found', 404);
+    }
+
     await bus.destroy();
-    res.status(200).json({ success: true, message: 'Bus deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Error deleting bus' });
+    logger.info(`Deleted bus with ID: ${busId}`);
+    success(res, 'Bus deleted successfully');
+  } catch (err) {
+    logger.error('Error deleting bus:', err);
+    error(res, 'Error deleting bus');
   }
 };

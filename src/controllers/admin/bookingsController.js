@@ -1,23 +1,18 @@
 const { Op } = require('sequelize');
 const Booking = require('../../models/Booking');
 const Payment = require('../../models/Payment');
-const logger = require('../../utils/logger'); // Optional: Use for logging
-
+const logger = require('../../utils/logger');
+const { success, error } = require('../../utils/responseHelper');
 
 // Get all bookings
 exports.getBookings = async (req, res) => {
   try {
     const bookings = await Booking.findAll();
-    res.status(200).json({
-      success: true,
-      data: bookings,
-    });
-  } catch (error) {
-    console.error('Error fetching bookings:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error fetching bookings',
-    });
+    logger.info('Fetched all bookings');
+    success(res, 'Bookings retrieved successfully', bookings);
+  } catch (err) {
+    logger.error('Error fetching bookings:', err);
+    error(res, 'Error fetching bookings');
   }
 };
 
@@ -26,80 +21,39 @@ exports.getBookingById = async (req, res) => {
   const { id } = req.params;
   try {
     const booking = await Booking.findByPk(id);
-    if (!booking) {
-      return res.status(404).json({
-        success: false,
-        message: 'Booking not found',
-      });
-    }
-    res.status(200).json({
-      success: true,
-      data: booking,
-    });
-  } catch (error) {
-    console.error('Error fetching booking:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error fetching booking',
-    });
+    if (!booking) return error(res, 'Booking not found', 404);
+    success(res, 'Booking retrieved successfully', booking);
+  } catch (err) {
+    logger.error('Error fetching booking:', err);
+    error(res, 'Error fetching booking');
   }
 };
 
 // Create a new booking
 exports.createBooking = async (req, res) => {
-  const { user_id, ticket_id, booking_date, status, payment_status } = req.body;
   try {
-    const newBooking = await Booking.create({
-      user_id,
-      ticket_id,
-      booking_date,
-      status,
-      payment_status,
-    });
-    res.status(201).json({
-      success: true,
-      data: newBooking,
-    });
-  } catch (error) {
-    console.error('Error creating booking:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error creating booking',
-    });
+    const newBooking = await Booking.create(req.body);
+    logger.info(`New booking created with ID: ${newBooking.id}`);
+    success(res, 'Booking created successfully', newBooking);
+  } catch (err) {
+    logger.error('Error creating booking:', err);
+    error(res, 'Error creating booking');
   }
 };
 
 // Update an existing booking
 exports.updateBooking = async (req, res) => {
   const { id } = req.params;
-  const { user_id, ticket_id, booking_date, status, payment_status } = req.body;
   try {
     const booking = await Booking.findByPk(id);
-    if (!booking) {
-      return res.status(404).json({
-        success: false,
-        message: 'Booking not found',
-      });
-    }
-
-    await booking.update({
-      user_id,
-      ticket_id,
-      booking_date,
-      status,
-      payment_status,
-    });
-
-    res.status(200).json({
-      success: true,
-      data: booking,
-    });
-  } catch (error) {
-    console.error('Error updating booking:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error updating booking',
-    });
+    if (!booking) return error(res, 'Booking not found', 404);
+    
+    await booking.update(req.body);
+    logger.info(`Booking updated: ID ${id}`);
+    success(res, 'Booking updated successfully', booking);
+  } catch (err) {
+    logger.error('Error updating booking:', err);
+    error(res, 'Error updating booking');
   }
 };
 
@@ -108,78 +62,46 @@ exports.deleteBooking = async (req, res) => {
   const { id } = req.params;
   try {
     const booking = await Booking.findByPk(id);
-    if (!booking) {
-      return res.status(404).json({
-        success: false,
-        message: 'Booking not found',
-      });
-    }
+    if (!booking) return error(res, 'Booking not found', 404);
 
     await booking.destroy();
-
-    res.status(200).json({
-      success: true,
-      message: 'Booking deleted successfully',
-    });
-  } catch (error) {
-    console.error('Error deleting booking:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error deleting booking',
-    });
+    logger.info(`Booking deleted: ID ${id}`);
+    success(res, 'Booking deleted successfully');
+  } catch (err) {
+    logger.error('Error deleting booking:', err);
+    error(res, 'Error deleting booking');
   }
 };
-
 
 // Accept cash payment for a booking
 exports.acceptCashPayment = async (req, res) => {
   const { bookingId } = req.params;
 
   try {
-    // Fetch the booking by ID
     const booking = await Booking.findByPk(bookingId);
-
     if (!booking) {
       logger.warn(`Booking not found: ID ${bookingId}`);
-      return res.status(404).json({
-        success: false,
-        message: 'Booking not found',
-      });
+      return error(res, 'Booking not found', 404);
     }
 
     if (booking.payment_status === 'paid') {
-      return res.status(400).json({
-        success: false,
-        message: 'Booking has already been marked as paid',
-      });
+      return error(res, 'Booking has already been marked as paid', 400);
     }
 
-    // Create a payment record for the cash payment
     const payment = await Payment.create({
       booking_id: booking.id,
-      transaction_id: `CASH-${Date.now()}`, // Generate a unique transaction ID
-      payment_method: 'stripe_cash', // Assuming 'stripe_cash' is used for cash payments
+      transaction_id: `CASH-${Date.now()}`,
+      payment_method: 'stripe_cash',
       payment_status: 'paid',
-      amount: booking.total_price || 0, // Use the total price from the booking (ensure it's part of the model)
+      amount: booking.total_price || 0,
     });
 
-    // Update the booking's payment status to "paid"
     await booking.update({ payment_status: 'paid' });
 
     logger.info(`Cash payment accepted for booking ID ${bookingId}`);
-    res.status(200).json({
-      success: true,
-      message: 'Cash payment accepted',
-      data: {
-        booking,
-        payment,
-      },
-    });
-  } catch (error) {
-    logger.error(`Error accepting cash payment for booking ID ${bookingId}:`, error);
-    res.status(500).json({
-      success: false,
-      message: 'Error processing cash payment',
-    });
+    success(res, 'Cash payment accepted', { booking, payment });
+  } catch (err) {
+    logger.error(`Error accepting cash payment for booking ID ${bookingId}:`, err);
+    error(res, 'Error processing cash payment');
   }
 };

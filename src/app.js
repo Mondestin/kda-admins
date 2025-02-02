@@ -27,8 +27,8 @@ app.use((req, res, next) => {
 });
 
 // Routes setup
-app.use('/api/v1/kda/admins', adminRoutes); // Admin-specific routes
-app.use('/api/v1/kda/admins', commonRoutes); // Shared/common routes
+app.use('/api/v1/kda/admin', adminRoutes); // Admin-specific routes
+app.use('/api/v1/kda/admin', commonRoutes); // Shared/common routes
 
 // Centralized error handler
 app.use(errorHandler);

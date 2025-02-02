@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const Amenity = require('./Amenity');
 
 // Define the Bus model
 const Bus = sequelize.define('Bus', {
@@ -25,32 +26,30 @@ const Bus = sequelize.define('Bus', {
     unique: true, // Registration number must be unique
     allowNull: false,
   },
-  wifi: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false, // Indicates if the bus has WiFi
-  },
-  toilet: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false, // Indicates if the bus has a toilet
-  },
-  food: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false, // Indicates if food service is available
-  },
-  air_conditioning: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false, // Indicates if the bus has air conditioning
-  },
-  charging_ports: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false, // Indicates if charging ports are available
-  },
   description: {
     type: DataTypes.TEXT,
     allowNull: true, // Optional description of the bus
   },
 }, {
   timestamps: true,
+  underscored: true,
+});
+
+// Define many-to-many relationship
+Bus.belongsToMany(Amenity, { 
+  through: 'BusAmenities',
+  foreignKey: 'bus_id',
+  otherKey: 'amenity_id',
+  timestamps: true,
+  underscored: true
+});
+
+Amenity.belongsToMany(Bus, { 
+  through: 'BusAmenities',
+  foreignKey: 'amenity_id',
+  otherKey: 'bus_id',
+  timestamps: true,
+  underscored: true
 });
 
 module.exports = Bus;
