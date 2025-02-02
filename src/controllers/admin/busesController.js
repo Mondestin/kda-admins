@@ -1,5 +1,5 @@
 const Bus = require('../../models/Bus');
-const response = require('../../utils/responseHelper');
+const { success, error } = require('../../utils/responseHelper');
 const logger = require('../../utils/logger');
 
 
@@ -25,10 +25,10 @@ exports.getBuses = async (req, res) => {
     const buses = await Bus.findAll();
 
     logger.info('Fetched all buses');
-    response.success(res, buses);
+    success(res, 'Buses retrieved successfully', buses);
   } catch (error) {
     logger.error('Error fetching buses:', error);
-    response.error(res, 'Error fetching buses');
+    error(res, 'Error fetching buses'); 
   }
 };
 
@@ -59,11 +59,9 @@ exports.createBus = async (req, res) => {
   console.log(req.body);
   try {
     const newBus = await Bus.create(req.body);
-
-    res.status(201).json({ success: true, data: newBus });
-
+    success(res, 'Bus created successfully', newBus);
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error creating bus' });
+    error(res, 'Error creating bus');
   }
 };
 
@@ -95,10 +93,10 @@ exports.getBusById = async (req, res) => {
   const { busId } = req.params;
   try {
     const bus = await Bus.findByPk(busId);
-    if (!bus) return res.status(404).json({ success: false, message: 'Bus not found' });
-    res.status(200).json({ success: true, data: bus });
+    if (!bus) return error(res, 'Bus not found', 404);
+    success(res, 'Bus retrieved successfully', bus);
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error fetching buse' });
+    error(res, 'Error fetching bus');
   }
 };
 
@@ -138,11 +136,11 @@ exports.updateBus = async (req, res) => {
   const { busId } = req.params;
   try {
     const bus = await Bus.findByPk(busId);
-    if (!bus) return res.status(404).json({ success: false, message: 'Bus not found' });
+    if (!bus) return error(res, 'Bus not found', 404);
     await bus.update(req.body);
-    res.status(200).json({ success: true, data: bus });
+    success(res, 'Bus updated successfully', bus);
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error updating bus' });
+    error(res, 'Error updating bus'); 
   }
 };
 
@@ -172,10 +170,10 @@ exports.deleteBus = async (req, res) => {
   const { busId } = req.params;
   try {
     const bus = await Bus.findByPk(busId);
-    if (!bus) return res.status(404).json({ success: false, message: 'Bus not found' });
+    if (!bus) return error(res, 'Bus not found', 404);  
     await bus.destroy();
-    res.status(200).json({ success: true, message: 'Bus deleted successfully' });
+    success(res, 'Bus deleted successfully');
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error deleting bus' });
+    error(res, 'Error deleting bus');
   }
 };
