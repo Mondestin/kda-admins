@@ -1,4 +1,7 @@
 const jwt = require('jsonwebtoken');
+const { error, success } = require('../utils/responseHelper');
+const { log } = require('winston');
+const logger = require('../utils/logger');
 require('dotenv').config(); // To access environment variables
 
 // Middleware for verifying JWT
@@ -6,10 +9,7 @@ const authMiddleware = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1]; // Bearer <token>
 
   if (!token) {
-    return res.status(401).json({
-      success: false,
-      message: 'Unauthorized: Token is required',
-    });
+    return success(res, 'Unauthorized: No token provided', 401);
   }
 
   try {
@@ -20,11 +20,8 @@ const authMiddleware = (req, res, next) => {
     req.user = decoded;
     next(); // Proceed to the next middleware or route handler
   } catch (error) {
-    console.error('Invalid token:', error);
-    res.status(401).json({
-      success: false,
-      message: 'Unauthorized: Invalid or expired token',
-    });
+    logger.error('Unauthorized: Invalid token');
+    error(res, 'Unauthorized: Invalid token', 401);
   }
 };
 
@@ -32,10 +29,7 @@ const authMiddleware = (req, res, next) => {
 const roleMiddleware = (roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      return res.status(403).json({
-        success: false,
-        message: 'Forbidden: You do not have access to this resource',
-      });
+      return error(res, 'Unauthorized: Insufficient permissions', 403);
     }
     next();
   };
