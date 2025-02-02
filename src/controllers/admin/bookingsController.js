@@ -2,22 +2,19 @@ const { Op } = require('sequelize');
 const Booking = require('../../models/Booking');
 const Payment = require('../../models/Payment');
 const logger = require('../../utils/logger'); // Optional: Use for logging
-
+const { success, error } = require('../../utils/responseHelper');
+const e = require('express');
 
 // Get all bookings
 exports.getBookings = async (req, res) => {
   try {
     const bookings = await Booking.findAll();
-    res.status(200).json({
-      success: true,
-      data: bookings,
-    });
+    logger.info('Fetched all bookings', bookings);
+    success(res, 'Bookings retrieved successfully', bookings);
+
   } catch (error) {
-    console.error('Error fetching bookings:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error fetching bookings',
-    });
+    logger.error('Error fetching bookings:', error);
+    error(res, 'Error fetching bookings');
   }
 };
 
@@ -27,21 +24,12 @@ exports.getBookingById = async (req, res) => {
   try {
     const booking = await Booking.findByPk(id);
     if (!booking) {
-      return res.status(404).json({
-        success: false,
-        message: 'Booking not found',
-      });
+      return error(res, 'Booking not found', 404);
     }
-    res.status(200).json({
-      success: true,
-      data: booking,
-    });
+    success(res, 'Booking retrieved successfully', booking);
   } catch (error) {
-    console.error('Error fetching booking:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error fetching booking',
-    });
+    logger.error('Error fetching booking:', error); 
+    error(res, 'Error fetching booking');
   }
 };
 

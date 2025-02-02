@@ -14,7 +14,7 @@ exports.register = async (req, res) => {
     // Check if the email is already registered
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
-      return response.error(res, 'Email already registered', 400);
+      return response.error(res, 'Email is already registered', 400);
     }
 
     // Hash the password

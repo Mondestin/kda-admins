@@ -24,7 +24,7 @@ exports.getBuses = async (req, res) => {
   try {
     const buses = await Bus.findAll();
 
-    logger.info('Fetched all buses');
+    logger.info('Fetched all buses', buses);
     success(res, 'Buses retrieved successfully', buses);
   } catch (error) {
     logger.error('Error fetching buses:', error);
