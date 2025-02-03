@@ -10,6 +10,7 @@ const errorHandler = require('./middlewares/errorHandler'); // Centralized error
 const adminRoutes = require('./routes/adminRoutes');
 const commonRoutes = require('./routes/commonRoutes');
 
+
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
