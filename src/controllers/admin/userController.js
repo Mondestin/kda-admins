@@ -1,21 +1,53 @@
 const User = require('../../models/User');
+const { success, error } = require('../../utils/responseHelper');
 const logger = require('../../utils/logger');
-const response = require('../../utils/responseHelper');
 
 /**
  * Get user profile
  * @route GET /user/me
  * @access Private (admin)
- */
-exports.me = async (req, res) => {
+ */ 
+exports.getProfile = async (req, res) => {
   try {
-    const user = await User.findByPk(req.user.id);
-    if (!user) return response.error(res, 'User not found', 404);
-    logger.info(`User retrieved: ${user.id}`);
-    response.success(res, 'User retrieved successfully', user);
+    // req.user is already attached by authMiddleware
+    const user = await User.findByPk(req.user.id, {
+      attributes: { exclude: ['password'] } // Exclude sensitive data
+    });
 
-  } catch (error) {
-    logger.error('Error fetching user:', error);
-    response.error(res, 'Error fetching user');
+    if (!user) {
+      logger.warn(`User not found: ID ${req.user.id}`);
+      return error(res, 'User not found', 404);
+    }
+
+    logger.info(`Profile retrieved for user: ${user.email}`);
+    success(res, 'Profile retrieved successfully', user);
+  } catch (err) {
+    logger.error('Error retrieving user profile:', err);
+    error(res, 'Error retrieving profile');
   }
-}
+};
+
+exports.updateProfile = async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    const user = await User.findByPk(req.user.id);
+
+    if (!user) {
+      logger.warn(`User not found: ID ${req.user.id}`);
+      return error(res, 'User not found', 404);
+    }
+
+    await user.update({ name, email });
+    
+    logger.info(`Profile updated for user: ${user.email}`);
+    success(res, 'Profile updated successfully', {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role
+    });
+  } catch (err) {
+    logger.error('Error updating user profile:', err);
+    error(res, 'Error updating profile');
+  }
+};

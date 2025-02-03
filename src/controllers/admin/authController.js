@@ -1,8 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../../models/User');
-const response = require('../../utils/responseHelper');
+const Token = require('../../models/Token');
+const { success, error } = require('../../utils/responseHelper');
 const logger = require('../../utils/logger');
+const { Op } = require('sequelize');
+const sequelize = require('../../config/database');
 
 require('dotenv').config();
 
@@ -14,7 +17,7 @@ exports.register = async (req, res) => {
     // Check if the email is already registered
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
-      return response.error(res, 'Email is already registered', 400);
+      return error(res, 'Email is already registered', 400);
     }
 
     // Hash the password
@@ -27,30 +30,45 @@ exports.register = async (req, res) => {
       password: hashedPassword,
     });
 
-    // Generate a JWT token
-    const token = jwt.sign(
-      { id: newUser.id, role: newUser.role },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
+    // Generate token
+    const token = generateToken(newUser);
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + 1);
 
-    res.status(201).json({
-      success: true,
-      message: 'User registered successfully',
+    // Save token to database
+    await Token.create({
+      user_id: newUser.id,
+      token: token,
+      expires_at: expiresAt
+    });
+
+    logger.info(`User registered successfully: ${email}`);
+    success(res, 'User registered successfully', {
       token,
-      data: {
+      user: {
         id: newUser.id,
         name: newUser.name,
         email: newUser.email,
+        role: newUser.role
       },
-    });
-  } catch (error) {
-    logger.error('Error registering user:', error);
-    res.status(500).json({
-      success: false,
-      message: 'An error occurred during registration',
-    });
+      expires_at: expiresAt
+    }, 201);
+  } catch (err) {
+    logger.error('Error registering user:', err);
+    error(res, 'Registration failed');
   }
+};
+
+const generateToken = (user) => {
+  return jwt.sign(
+    { 
+      id: user.id, 
+      email: user.email,
+      role: user.role 
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
 };
 
 /**
@@ -90,49 +108,80 @@ exports.register = async (req, res) => {
  *        type: string
  */
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
-
+  const t = await sequelize.transaction();
+  
   try {
-    // Find the user by email
+    const { email, password } = req.body;
+    
+    // Find user
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(400).json({
-        success: false,
-        message: 'Invalid email or password',
-      });
+      return error(res, 'Invalid credentials', 401);
     }
 
-    // Check if the password is correct
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({
-        success: false,
-        message: 'Invalid email or password',
-      });
+    // Verify password
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return error(res, 'Invalid credentials', 401);
     }
 
-    // Generate a JWT token
-    const token = jwt.sign(
-      { id: user.id, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-
-    // Send the token in a cookie
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+    // Check for existing valid token
+    const existingToken = await Token.findOne({
+      where: {
+        user_id: user.id,
+        is_revoked: false,
+        expires_at: {
+          [Op.gt]: new Date()
+        }
+      },
+      transaction: t
     });
 
-    // Respond with the token and user details
-    res.status(200).json({
-      success: true,
-      message: 'Login successful',
-      token
+    let token;
+    let expiresAt;
+
+    if (existingToken) {
+      // Use existing token
+      token = existingToken.token;
+      expiresAt = existingToken.expires_at;
+      logger.info(`Reusing existing token for user: ${user.email}`);
+    } else {
+      // Revoke all existing tokens for this user
+      await Token.update(
+        { is_revoked: true },
+        { 
+          where: { user_id: user.id },
+          transaction: t
+        }
+      );
+
+      // Generate new token
+      token = generateToken(user);
+      expiresAt = new Date();
+      expiresAt.setHours(expiresAt.getHours() + 1);
+
+      // Save new token to database
+      await Token.create({
+        user_id: user.id,
+        token: token,
+        expires_at: expiresAt,
+        is_revoked: false
+      }, { transaction: t });
+      
+      logger.info(`Generated new token for user: ${user.email}`);
+    }
+
+    await t.commit();
+
+    success(res, 'Login successful', { 
+      token, 
+      user: { id: user.id, email: user.email, role: user.role },
+      expires_at: expiresAt
     });
-  } catch (error) {
-    logger.error('Error logging in user:', error);
-    response.error(res, 'An error occurred during login', 500);
+  } catch (err) {
+    await t.rollback();
+    logger.error('Login error:', err);
+    error(res, 'Login failed');
   }
 };
 
@@ -146,11 +195,44 @@ exports.login = async (req, res) => {
  *       200:
  *         description: User logged out successfully
  */
-exports.logout = (req, res) => {
-    // Clear the 'token' cookie
-    res.clearCookie('token');
+exports.logout = async (req, res) => {
+  try {
+    // Token is already verified by authMiddleware
+    const token = req.headers.authorization?.split(' ')[1];
+    
+    // Revoke the token
+    await Token.update(
+      { is_revoked: true },
+      { 
+        where: { 
+          token: token,
+          user_id: req.user.id // Additional security check
+        } 
+      }
+    );
 
-    // Respond with a success message
-    response.success(res, 'User logged out successfully');
-  };
+    logger.info(`User logged out successfully: ${req.user.email}`);
+    success(res, 'Logout successful');
+  } catch (err) {
+    logger.error('Logout error:', err);
+    error(res, 'Logout failed');
+  }
+};
+
+// Add a cleanup function for expired tokens (can be called periodically)
+exports.cleanupExpiredTokens = async () => {
+  try {
+    await Token.destroy({
+      where: {
+        [Op.or]: [
+          { expires_at: { [Op.lt]: new Date() } },
+          { is_revoked: true }
+        ]
+      }
+    });
+    logger.info('Cleaned up expired tokens');
+  } catch (err) {
+    logger.error('Token cleanup error:', err);
+  }
+};
   
