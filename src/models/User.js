@@ -17,6 +17,13 @@ const User = sequelize.define('User', {
     allowNull: false,
     unique: true, 
   },
+  phone_number: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+    validate: {
+      is: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i // Basic phone validation
+    }
+  },
   password: {
     type: DataTypes.STRING,
     allowNull: false, 
@@ -27,6 +34,7 @@ const User = sequelize.define('User', {
   },
 }, {
   timestamps: true, 
+  underscored: true,
 });
 
 module.exports = User;

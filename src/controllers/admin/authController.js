@@ -11,7 +11,7 @@ require('dotenv').config();
 
 // add swagger annotations here
 exports.register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, phone_number } = req.body;
 
   try {
     // Check if the email is already registered
@@ -27,6 +27,7 @@ exports.register = async (req, res) => {
     const newUser = await User.create({
       name,
       email,
+      phone_number,
       password: hashedPassword,
     });
 

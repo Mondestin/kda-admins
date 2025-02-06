@@ -72,7 +72,6 @@ exports.deleteBooking = async (req, res) => {
     error(res, 'Error deleting booking');
   }
 };
-
 // Accept cash payment for a booking
 exports.acceptCashPayment = async (req, res) => {
   const { bookingId } = req.params;
