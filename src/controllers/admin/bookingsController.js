@@ -3,6 +3,7 @@ const Booking = require('../../models/Booking');
 const Payment = require('../../models/Payment');
 const logger = require('../../utils/logger');
 const { success, error } = require('../../utils/responseHelper');
+const bookingService = require('../../services/bookingService');
 
 // Get all bookings
 exports.getBookings = async (req, res) => {
@@ -18,26 +19,30 @@ exports.getBookings = async (req, res) => {
 
 // Get a single booking by ID
 exports.getBookingById = async (req, res) => {
-  const { id } = req.params;
   try {
-    const booking = await Booking.findByPk(id);
-    if (!booking) return error(res, 'Booking not found', 404);
+    const booking = await bookingService.getBookingDetails(req.params.id);
     success(res, 'Booking retrieved successfully', booking);
   } catch (err) {
     logger.error('Error fetching booking:', err);
-    error(res, 'Error fetching booking');
+    error(res, err.message || 'Error fetching booking');
   }
 };
 
 // Create a new booking
 exports.createBooking = async (req, res) => {
   try {
-    const newBooking = await Booking.create(req.body);
+    const { user_id, ticket_id, booking_date, status } = req.body;
+    const newBooking = await bookingService.createBooking(
+      user_id, 
+      ticket_id, 
+      booking_date, 
+      status
+    );
     logger.info(`New booking created with ID: ${newBooking.id}`);
     success(res, 'Booking created successfully', newBooking);
   } catch (err) {
     logger.error('Error creating booking:', err);
-    error(res, 'Error creating booking');
+    error(res, err.message || 'Error creating booking');
   }
 };
 
@@ -72,6 +77,7 @@ exports.deleteBooking = async (req, res) => {
     error(res, 'Error deleting booking');
   }
 };
+
 // Accept cash payment for a booking
 exports.acceptCashPayment = async (req, res) => {
   const { bookingId } = req.params;
@@ -102,5 +108,16 @@ exports.acceptCashPayment = async (req, res) => {
   } catch (err) {
     logger.error(`Error accepting cash payment for booking ID ${bookingId}:`, err);
     error(res, 'Error processing cash payment');
+  }
+};
+
+exports.cancelBooking = async (req, res) => {
+  try {
+    const booking = await bookingService.cancelBooking(req.params.id);
+    logger.info(`Booking cancelled: ID ${req.params.id}`);
+    success(res, 'Booking cancelled successfully', booking);
+  } catch (err) {
+    logger.error('Error cancelling booking:', err);
+    error(res, err.message || 'Error cancelling booking');
   }
 };
