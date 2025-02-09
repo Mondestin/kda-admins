@@ -1,5 +1,0 @@
-/*
- Routes
-*/
-
-GET: /admins/routes

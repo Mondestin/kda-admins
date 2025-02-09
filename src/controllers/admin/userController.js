@@ -29,7 +29,7 @@ exports.getProfile = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const { name, email } = req.body;
+    const { name, email, phone_number } = req.body;
     const user = await User.findByPk(req.user.id);
 
     if (!user) {
@@ -37,13 +37,14 @@ exports.updateProfile = async (req, res) => {
       return error(res, 'User not found', 404);
     }
 
-    await user.update({ name, email });
+    await user.update({ name, email, phone_number });
     
     logger.info(`Profile updated for user: ${user.email}`);
     success(res, 'Profile updated successfully', {
       id: user.id,
       name: user.name,
       email: user.email,
+      phone_number: user.phone_number,
       role: user.role
     });
   } catch (err) {
